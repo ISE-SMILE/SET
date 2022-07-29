@@ -1,0 +1,25 @@
+service: go
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: go1.x
+  lambdaHashingVersion: 20201221
+  region: ${env:REGION,eu-central-1}
+  memorySize: ${env:MEM,256}
+
+package:
+  exclude:
+    - ./**
+  include:
+    - ./bin/**
+
+functions:
+  bench:
+    handler: bin/tester
+    timeout: ${env:TIMEOUT,29}
+    events:
+      - httpApi:
+          path: /bench
+          method: post
+          

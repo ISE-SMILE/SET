@@ -1,0 +1,31 @@
+service: python
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  region: ${env:REGION,eu-central-1}
+  memorySize: ${env:MEM,256}
+
+package:
+  include:
+    - bencher.py
+    - include-me-dir/**
+
+
+functions:
+  bench:
+    handler: handler.bench
+    timeout: ${env:TIMEOUT,29}
+    events:
+     - httpApi:
+         path: /doom/bench
+         method: post
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true

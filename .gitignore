@@ -1,0 +1,10 @@
+functions/*/go/*.zip
+functions/*/*/*lock*
+functions/*/go/*.json
+functions/aws/go/bin
+functions/aws/go/.serverless
+.idea/
+*.iml
+functions/*/go/bencher
+functions/*/python/bencher.py
+functions/*/python/Pipfile
