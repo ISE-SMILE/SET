@@ -1,0 +1,19 @@
+---
+name: ow_prime_1
+target: bencher
+threads: 6
+warmup: 30
+scaling: 1.5
+phaseLength: 120s
+type: prime
+complexity: 1
+invoker:
+  type: ow
+  #host: add host name to open whisk deployment
+  #token: add token to openwhisk deployment or leave empty if you want to use the ~/.wskprops file.
+deployment:
+  source: functions/ow/go
+  runtime: go:1.15
+  memory: 512
+  timeout: 90s
+  region: foo
